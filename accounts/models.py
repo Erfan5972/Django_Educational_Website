@@ -5,14 +5,13 @@ from .manager import UserManager
 
 class User(AbstractBaseUser):
     phone_number = models.CharField(max_length=11, unique=True)
-    email = models.EmailField(unique=True)
     full_name = models.CharField(max_length=500)
     created_at = models.DateTimeField(auto_now_add=True)
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
 
     USERNAME_FIELD = "phone_number"
-    REQUIRED_FIELDS = ["email", "full_name"]
+    REQUIRED_FIELDS = ["full_name"]
 
     objects = UserManager()
 
@@ -28,3 +27,20 @@ class User(AbstractBaseUser):
     @property
     def is_staff(self):
         return self.is_admin
+
+
+class UserOtpCode(models.Model):
+    code = models.CharField(max_length=4)
+    phone_number = models.CharField(max_length=100)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f'{self.code}'
+
+
+class Subscription(models.Model):
+    name = models.CharField(max_length=500)
+    price = models.BigIntegerField()
+
+    def __str__(self):
+        return f'name: {self.name} - price: {self.price}'

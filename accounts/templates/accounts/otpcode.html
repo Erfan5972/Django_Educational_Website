@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+    <section class="sign_in_form_container text-center bg-light mt-5">
+
+        <p class="sign_in_form_title">ثبت نام کاربر</p>
+
+        <form class="sign_in_form" method="post" novalidate>
+            {% csrf_token %}
+            {{ form.code }}<br><br>
+            <input type="submit" class="btn custom-btn-blue action" value="ثبت‌نام">
+        </form>
+        <br/><br/>
+    </section>
+{% endblock %}

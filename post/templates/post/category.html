@@ -1,0 +1,65 @@
+
+
+{% extends 'base.html' %}
+
+{% block content %}
+    <style>
+        .card-img-top {
+            margin-right: 170px;
+            width: 150px;
+            height: 300px;
+            object-fit: none;
+        }
+    </style>
+
+    <div class="custom-breadcrumb">
+        <div class="container d-flex justify-content-between align-items-center">
+            <nav>
+                <h1>تمام دسته بندی ها </h1><br/>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item active"><a href="{% url 'home:home' %}">ای ان وی</a></li>
+                    <li class="breadcrumb-item">دسته بندی ها</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+
+     <div class="container">
+        <div class="row">
+            <!--Start Aside-->
+            <aside class="col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-3">
+                <div class="item-box">
+                    <form method="get" class="position-relative">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <button class="btn position-absolute" type="submit"><i class="fa fa-search"></i></button>
+                    </form>
+
+                </div>
+            </aside><br/><br/>
+        </div>
+    </div>
+    <div class="row">
+        {% for category in categories %}
+            <div class="col-sm-12 col-md-6 col-lg-4 mt-4">
+                <div class="card">
+                    <img class="card-img-top cart-img" src="{{ category.image.url }}" alt="آموزش {{ category.name }}">
+                    <div class="card-body">
+                        <h4 class="index-course-slider">
+                            <a class="d-block" href="/courses/scikit/">دوره های آموزشی {{ category.name }} با عرفان کاظمیان</a>
+                        </h4>
+                        <div class="card-details d-flex justify-content-between align-items-center">
+                            <div class="custom-btn-course-status"></div>
+                            <span>عرفان کاظمیان</span>
+                        </div>
+                    </div>
+                    <div class="card-footer d-flex justify-content-between align-items-center">
+                        <span>با ما تا انتها!</span>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+                <h3>دسته بندی با این نام یافت نشد!</h3>
+        {% endfor %}
+    </div>
+{% endblock %}

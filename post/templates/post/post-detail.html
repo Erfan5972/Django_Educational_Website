@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="custom-breadcrumb">
+        <div class="container d-flex justify-content-between align-items-baseline">
+            <nav>
+                <h1>{{ post.title }}</h1><br/>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item active"><a href="{% url 'home:home' %}">ای ان وی</a></li>
+                    <li class="breadcrumb-item active"><a href="{% url 'post:categories' %}">دسته بندی ها</a></li>
+                    <li class="breadcrumb-item">{{ post.title }}</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+<!-- END BREADCRUMB -->
+<div class="container mt-4">
+    <div class="row">
+        <aside class="col-sm-12 col-md-12 col-lg-4 col-xl-4 order-sm-0 order-md-0 order-lg-0 order-xl-0 order-first">
+            <div class="item-box">
+                <h6 class="item-box-title"><span>قیمت این دوره :</span>
+                    <span>
+                        {% if post.price is not None %}
+                        {{ post.price }}
+                        {% else %}
+                        رایگان
+                        {% endif %}
+                    </span>
+                </h6>
+                <div class="item-box-details">
+                    <ul>
+                        <li><i class="fa fa-user"></i> مدرس دوره :<span>عرفان کاظمیان</span></li>
+{#                        <li><i class="fa fa-clock"></i> مدت زمان دوره :<span>7:19:50</span></li>#}
+{#                        <li><i class="fa fa-question"></i> وضعیت دوره :<span class="in-progress">  درحال ضبط  </span></li>#}
+                        <li><i class="fa fa-star"></i> دسترسی رایگان برای کاربران ویژه </li>
+                    </ul>
+                    <div class="d-grid gap-2 my-3">
+                        <a class="btn custom-btn-blue" href="{% url 'accounts:subscription' %}"><span>خرید اشتراک</span></a>
+                    </div>
+                </div>
+            </div>
+        </aside>
+    </div>
+</div>
+
+{% endblock %}

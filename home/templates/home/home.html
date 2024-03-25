@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <style>
+        .card-img-top {
+            margin-right: 170px;
+            width: 150px;
+            height: 300px;
+            object-fit: none;
+        }
+    </style>
+        <!--Start Header-->
+    <header>
+        <div class="container">
+            <div class="row">
+                <!--Start Header Right-->
+                <div class="header-right col-sm-12 col-md-12 col-lg-6 col-xl-6">
+                    <span class="header-span">پیشرفت های خارق العاده...</span>
+                    <h1 class="index-header-title"> ای ان وی، مرجع تخصصی آموزش بک اند</h1>
+                    <div class="search-wrapper position-relative">
+                        <!--Start Search Form-->
+                        <form class="position-relative" method="get" action="/courses/search/">
+                            <input type="text" name="term" class="form-control" placeholder="چی دوست داری یاد بگیری..؟!" autocomplete="off" id="searchMainInput" maxlength="100" required>
+                            <button class="btn custom-btn-blue position-absolute" type="submit"><i class="fa fa-search"></i></button>
+                        </form>
+                        <!--End Search Form-->
+                    </div>
+                    <!--Start Activities Box-->
+                    <div class="activities-box d-flex justify-content-between align-items-center">
+                        <div class="activity-box">
+                            <p>هر چیزی که برای برنامه نویس بک اند شدن نیاز دارید..!</p>
+                        </div>
+                    </div>
+                    <!--End Activities Box-->
+                </div>
+                <!--End Header Right-->
+                <!--Start Header Left-->
+                <div class="header-left col-sm-6 col-md-6 col-lg-6 col-xl-6"><img class="img-fluid float-end" src="/static/img/header-left-bg_prev_ui.png"></div>
+                <!--End Header Left-->
+            </div>
+        </div>
+    </header>
+    <!--End Header-->
+
+    <div class="container">
+    <!--Start New Products Section-->
+        <section class="products-section">
+            <!--Start Description-->
+            <div class="section-desc d-flex justify-content-between align-items-center">
+                <div class="desc">
+                    <h3>همه دوره ها</h3><span>رشد شما با یادگیری آغاز میشود...</span>
+                </div>
+                <div class="btn-desc"><a class="btn custom-btn-blue" href="{% url 'post:categories' %}">دسته بندی</a></div>
+            </div>
+        </section>
+    </div>
+     <!--Start Slider-->
+    <div class="row">
+        {% for post in posts %}
+            <div class="col-sm-12 col-md-6 col-lg-4 mt-4">
+                <a href="{% url 'post:detail' post.id %}">
+                <div class="card">
+                    <img class="card-img-top cart-img" src="{{ post.image.url }}" alt="آموزش {{ post.title }}">
+                    <div class="card-body">
+                        <h4 class="index-course-slider">
+                            <a class="d-block" href="{% url 'post:detail' post.id %}">{{ post.title }}</a>
+                        </h4>
+                        <div class="card-details d-flex justify-content-between align-items-center">
+                            <div class="custom-btn-course-status">
+                                {% if post.price is not None %}
+                                    {{ post.price }} تومان
+                                {% else %}
+                                    رایگان
+                                {% endif %}
+                            </div>
+                            <span>عرفان کاظمیان</span>
+                        </div>
+                    </div>
+                    <div class="card-footer d-flex justify-content-between align-items-center">
+                        <span>دسته بندی: {{ post.category.name }}</span>
+                        <span>تاریخ ایجاد: {{ post.created_at|date:"d - m - Y" }}</span>
+
+                    </div>
+                </div>
+                </a>
+            </div>
+            {% empty %}
+                <h3>پستی با این نام یافت نشد!</h3>
+        {% endfor %}
+    </div>
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+    <section class="sign_in_form_container text-center bg-light mt-5">
+
+        <p class="sign_in_form_title ">ورود کاربر</p>
+
+        <form class="sign_in_form" method="post" novalidate>
+            {% csrf_token %}
+            {{ form.phone_number }}<br><br>
+            {{ form.password }}<br><br>
+{#            {{ form.as_p }}#}
+            <input type="submit" class="btn custom-btn-blue action" value="ورود">
+        </form>
+        <br/><br/>
+    </section>
+{% endblock %}

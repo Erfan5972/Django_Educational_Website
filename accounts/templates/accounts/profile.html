@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <div class="custom-breadcrumb">
+        <div class="container d-flex justify-content-between align-items-center">
+            <nav>
+                <h3>پروفایل کاربر</h3>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item active"><a href="{% url 'home:home' %}">ای ان وی</a></li>
+                    <li class="breadcrumb-item">پروفایل</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+
+<div class="card" style="width: 18rem;margin-right: 60px; margin-top: 30px;">
+  <div class="card-body">
+    <h5 class="card-title" style=""> نام و نام خانوادگی:<br> {{ user.full_name }}</h5>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item"> شماره موبایل:<br>{{ user.phone_number }}</li>
+  </ul>
+  <div class="card-body">
+    <a href="{% url 'accounts:user-logout' %}" class="card-link"><p class="btn custom-btn-red" style="display: inline-block; margin-right: 10px;">خروج</p></a>
+    <a href="{% url 'accounts:edit-profile' %}" class="card-link"><p class="btn custom-btn-blue" style="display: inline-block;">ویرایش</p></a>
+  </div>
+</div>
+{% endblock %}
