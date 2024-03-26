@@ -39,8 +39,13 @@ class UserOtpCode(models.Model):
 
 
 class Subscription(models.Model):
-    name = models.CharField(max_length=500)
+    count = models.IntegerField()
     price = models.BigIntegerField()
 
     def __str__(self):
-        return f'name: {self.name} - price: {self.price}'
+        return f'count : {self.count} - price: {self.price}'
+
+
+class UserSubscription(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user_subscription')
+    subscription = models.ForeignKey(Subscription, on_delete=models.CASCADE, related_name='subscription_user')

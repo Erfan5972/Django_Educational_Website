@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from .forms import UserChangeForm, UserCreationForm
-from .models import User, UserOtpCode, Subscription
+from .models import User, UserOtpCode, Subscription, UserSubscription
 from django.contrib.auth.models import Group
 
 
@@ -35,3 +35,4 @@ admin.site.register(User, UserAdmin)
 admin.site.unregister(Group)
 admin.site.register(UserOtpCode)
 admin.site.register(Subscription)
+admin.site.register(UserSubscription)

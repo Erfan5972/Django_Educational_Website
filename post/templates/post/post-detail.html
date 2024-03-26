@@ -31,7 +31,16 @@
                         <li><i class="fa fa-user"></i> مدرس دوره :<span>عرفان کاظمیان</span></li>
 {#                        <li><i class="fa fa-clock"></i> مدت زمان دوره :<span>7:19:50</span></li>#}
 {#                        <li><i class="fa fa-question"></i> وضعیت دوره :<span class="in-progress">  درحال ضبط  </span></li>#}
-                        <li><i class="fa fa-star"></i> دسترسی رایگان برای کاربران ویژه </li>
+                        <li>
+                            <i class="fa fa-star">
+                            </i>
+
+                            {% if post.price is not None %}
+                                دسترسی رایگان برای کاربران دارای اشتراک
+                            {% else %}
+                                دسترسی رایگان برای همه
+                            {% endif %}
+                        </li>
                     </ul>
                     <div class="d-grid gap-2 my-3">
                         <a class="btn custom-btn-blue" href="{% url 'accounts:subscription' %}"><span>خرید اشتراک</span></a>
@@ -39,6 +48,29 @@
                 </div>
             </div>
         </aside>
+            <main class="col-sm-12 col-md-12 col-lg-8 col-xl-8 order-sm-1 order-md-1 order-lg-1 order-xl-1 order-last mb-3">
+                <article class="course-content-wrapper">
+                    <div class="tab-content p-3">
+                        <div class="tab-pane fade show active" id="courseInfo"><img class="article-img w-50" style="margin-right: 190px" src="{{ post.image.url }}" alt="{{ post.title }}"><br/><br/>
+                            <p><h2 dir="rtl"><span style="color:#f39c12"><span style="font-size:28px"><strong>#</strong></span></span><span style="color:#2c3e50"><span style="font-size:28px"><strong>{{post.title}}</strong></span></span></h2>
+                            <p dir="rtl">{{ post.description }}</p>
+                            <p dir="rtl"><em><strong>فیلم های دوره: </strong></em></p><br/><br/>
+                            <div class="episode_all_container">
+
+                                {% for video in videos %}
+                                    <div class="episode_container">
+                                        <p class="episode_counter">{{ forloop.counter }}</p>
+                                        <a href="{{ video.video.url }}" class="episode_link">intro</a>
+                                        <p class="course_time">{{ video.duration }}</p>
+                                        <p class="episode_price"></p>
+                                    </div>
+                                {% endfor %}
+
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </main>
     </div>
 </div>
 
