@@ -1,11 +1,19 @@
 {% extends 'base.html' %}
 {% block content %}
+    <div class="custom-breadcrumb">
+        <div class="container d-flex justify-content-between align-items-baseline">
+            <nav>
+                <h3>تمام دسته بندی ها</h3>
+                <a href="{% url 'home:home' %}">ای ان وی</a> <span>/</span> <a href="{% url 'post:categories' %}"> دسته بندی ها</a> <span> / {{ post_category_name}}</span>
+            </nav>
+        </div>
+    </div>
     <div class="row">
         {% for post in posts %}
             <div class="col-sm-12 col-md-6 col-lg-4 mt-4">
                 <a href="{% url 'post:detail' post.id %}">
                 <div class="card">
-                    <img class="card-img-top cart-img" src="{{ post.image.url }}" alt="آموزش {{ post.title }}">
+                <img class="cart-img" src="{{ post.image.url }}" alt="آموزش {{ post.title }}" style= margin-right:120px;width:210px;height:300px;object-fit:none;display:flex;justify-content:center;align-items:center;">
                     <div class="card-body">
                         <h4 class="index-course-slider">
                             <a class="d-block" href="{{ post.get_absolute_url }} ">{{ post.title }}</a>

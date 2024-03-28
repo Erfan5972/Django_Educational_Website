@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     'phonenumber_field',
     'mptt',
     'azbankgateways',
-
+    'crispy_forms',
+    'crispy_bootstrap5',
 ]
 
 MIDDLEWARE = [
@@ -162,3 +163,6 @@ AZ_IRANIAN_BANK_GATEWAYS = {
    'IS_SAFE_GET_GATEWAY_PAYMENT': False, #اختیاری، بهتر است True بزارید.
    'CUSTOM_APP': None,
 }
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"

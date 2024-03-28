@@ -32,6 +32,7 @@ class UserRegisterView(View):
                 return redirect('accounts:user-register')
             else:
                 random_code = random.randint(1000, 9999)
+                print(random_code)
                 UserOtpCode.objects.create(code=random_code, phone_number=cd['phone_number'])
                 items = {
                     'phone_number': str(cd['phone_number']),
@@ -40,7 +41,7 @@ class UserRegisterView(View):
                 }
                 request.session['user_registration_info'] = items
                 send_otp_code(str(cd['phone_number']), code=random_code)
-                messages.success(request,'کد تایید برای شما ارسال شد', 'success')
+                messages.success(request, 'کد تایید برای شما ارسال شد', 'success')
                 return redirect('accounts:user-otp-verify')
         return render(request, 'accounts/register.html', {'form': form})
 
@@ -137,7 +138,6 @@ class UserEditProfileView(LoginRequiredMixin, View):
     def post(self, request):
         user = get_object_or_404(User, pk=request.user.id)
         form = self.form_class(request.POST)
-
         if form.is_valid():
             user.phone_number = form.cleaned_data['phone_number']
             user.full_name = form.cleaned_data['full_name']

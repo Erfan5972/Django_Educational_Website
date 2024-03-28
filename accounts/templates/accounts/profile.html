@@ -3,13 +3,10 @@
 {% block content %}
     <div class="custom-breadcrumb">
         <div class="container d-flex justify-content-between align-items-center">
-            <nav>
-                <h3>پروفایل کاربر</h3>
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item active"><a href="{% url 'home:home' %}">ای ان وی</a></li>
-                    <li class="breadcrumb-item">پروفایل</li>
-                </ol>
-            </nav>
+        <nav>
+            <h3>پروفایل کاربر</h3>
+            <a href="{% url 'home:home' %}">ای ان وی</a> <span>/ پروفایل</span>
+        </nav>
         </div>
     </div>
 
@@ -18,7 +15,7 @@
     <h5 class="card-title" style=""> نام و نام خانوادگی:<br> {{ user.full_name }}</h5>
   </div>
   <ul class="list-group list-group-flush">
-    <li class="list-group-item"> شماره موبایل:<br>{{ user.phone_number }}</li>
+    <li class="list-group-item"> شماره موبایل:<br><p dir="ltr">{{ user.phone_number }}</p></li>
   </ul>
   <div class="card-body">
     <a href="{% url 'accounts:user-logout' %}" class="card-link"><p class="btn custom-btn-red" style="display: inline-block; margin-right: 10px;">خروج</p></a>

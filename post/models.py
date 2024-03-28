@@ -2,6 +2,7 @@ from django.db import models
 from mptt.models import MPTTModel, TreeForeignKey
 from moviepy.editor import VideoFileClip
 from django.urls import reverse
+from accounts.models import User
 
 
 class Post(models.Model):
@@ -52,3 +53,13 @@ class Category(MPTTModel):
 
     def __str__(self):
         return f'name: {self.name} - parent:  {self.parent}'
+
+
+class Comment(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='u_comments')
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='p_comments')
+    content = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f' user: {self.user} -post: {self.post}'

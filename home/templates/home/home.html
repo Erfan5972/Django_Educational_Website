@@ -4,10 +4,13 @@
 
     <style>
         .card-img-top {
-            margin-right: 170px;
-            width: 150px;
+            margin-right: 120px;
+            width: 210px;
             height: 300px;
             object-fit: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
     </style>
         <!--Start Header-->
@@ -20,11 +23,12 @@
                     <h1 class="index-header-title"> ای ان وی، مرجع تخصصی آموزش بک اند</h1>
                     <div class="search-wrapper position-relative">
                         <!--Start Search Form-->
-                        <form class="position-relative" method="get" action="/courses/search/">
+
+                        <form class="position-relative" method="get" action="{% url 'post:search' %}">
                             <input type="text" name="term" class="form-control" placeholder="چی دوست داری یاد بگیری..؟!" autocomplete="off" id="searchMainInput" maxlength="100" required>
                             <button class="btn custom-btn-blue position-absolute" type="submit"><i class="fa fa-search"></i></button>
                         </form>
-                        <!--End Search Form-->
+
                     </div>
                     <!--Start Activities Box-->
                     <div class="activities-box d-flex justify-content-between align-items-center">
@@ -60,7 +64,7 @@
         {% for post in posts %}
             <div class="col-sm-12 col-md-6 col-lg-4 mt-4">
                 <a href="{% url 'post:detail' post.id %}">
-                <div class="card">
+                <div class="card d-flex justify-content-center ">
                     <img class="card-img-top cart-img" src="{{ post.image.url }}" alt="آموزش {{ post.title }}">
                     <div class="card-body">
                         <h4 class="index-course-slider">
